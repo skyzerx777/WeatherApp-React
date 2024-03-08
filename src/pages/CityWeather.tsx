@@ -45,7 +45,7 @@ function CityWeather() {
 	}, [selectedCity]);
 
 	return (
-		<div className='flex flex-col mt-[10%]'>
+		<div className='flex flex-col mt-[5%] bg-white rounded-lg p-10 shadow-lg w-2/5'>
 			<div className='mb-4'>
 				{!fullCityWeather || (!selectedCity && 'Loading...')}
 				{selectedCity && (
@@ -66,7 +66,7 @@ function CityWeather() {
 						<p className='mb-1'>
 							Wind speed: {fullCityWeather.wind.speed} meter/sec
 							{fullCityWeather.wind.gust
-								? `(Gusts up to: 
+								? ` (Gusts up to: 
 							${fullCityWeather.wind.gust} meter/sec)`
 								: ''}
 						</p>

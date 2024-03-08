@@ -34,7 +34,7 @@ function SearchBar({ setSelectedCity }) {
 	};
 
 	return (
-		<div className='w-1/2 my-5'>
+		<div className='w-1/2 my-5 shadow-lg'>
 			<AsyncPaginate
 				loadOptions={getDataBySearch}
 				value={inputValue}
