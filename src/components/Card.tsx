@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { API_GEOCODING_URL, API_KEY, API_WEATHER_URL } from '../constants';
+import { API_GEOCODING_URL, API_WEATHER_URL } from '../constants';
 
 function Card(props) {
+	const apiKey = import.meta.env.VITE_API_KEY;
 	const { name, country_code: code, onClick } = props;
 	const [temperatureInfo, setTemperatureInfo] = useState();
 	const getCoordinates = async () => {
 		const result = await axios.get(
-			`${API_GEOCODING_URL}/direct?q=${name},${code}&limit=1&appid=${API_KEY}`
+			`${API_GEOCODING_URL}/direct?q=${name},${code}&limit=1&appid=${apiKey}`
 		);
 		return result.data[0];
 	};
@@ -16,7 +17,7 @@ function Card(props) {
 		const coordinates = await getCoordinates();
 		const { lat, lon } = coordinates;
 		const result = await axios.get(
-			`${API_WEATHER_URL}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+			`${API_WEATHER_URL}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
 		);
 		setTemperatureInfo(result.data.main);
 	};

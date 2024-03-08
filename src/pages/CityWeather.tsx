@@ -3,11 +3,12 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CityContext } from '../App';
 import HomePageButton from '../components/HomePageButton';
-import { API_KEY, API_WEATHER_URL } from '../constants';
+import { API_WEATHER_URL } from '../constants';
 import FullCityInfoType from '../types/fullCityInfo';
 import SelectedCityType from '../types/selectedCity';
 
 function CityWeather() {
+	const apiKey = import.meta.env.VITE_API_KEY;
 	const city: SelectedCityType = useContext(CityContext);
 	const [selectedCity, setSelectedCity] = useState<SelectedCityType>();
 	const [fullCityWeather, setFullCityWeather] = useState<FullCityInfoType>();
@@ -33,7 +34,7 @@ function CityWeather() {
 		if (selectedCity) {
 			const [lat, lon] = selectedCity.value.split(' ');
 			const response = await axios.get(
-				`${API_WEATHER_URL}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+				`${API_WEATHER_URL}/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`
 			);
 			const data = response.data;
 			setFullCityWeather(data);
@@ -49,10 +50,11 @@ function CityWeather() {
 			<div className='mb-4'>
 				{!fullCityWeather || (!selectedCity && 'Loading...')}
 				{selectedCity && fullCityWeather && (
-					<div className='flex justify-between'>
+					<div className='flex justify-between items-center'>
 						<h1 className='font-bold text-3xl mb-2'>{selectedCity.label}</h1>
 						<img
 							src={`http://openweathermap.org/img/w/${fullCityWeather.weather[0].icon}.png`}
+							width={60}
 						/>
 					</div>
 				)}

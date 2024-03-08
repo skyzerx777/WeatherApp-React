@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/Card';
-import { API_GEOCODING_URL, API_KEY } from '../constants';
+import { API_GEOCODING_URL } from '../constants';
 
 function Cards({ setSelectedCity }) {
+	const apiKey = import.meta.env.VITE_API_KEY;
 	const navigate = useNavigate();
 	const cities = [
 		{
@@ -53,7 +54,7 @@ function Cards({ setSelectedCity }) {
 			const [cityName, code] = city.split(', ');
 			const getCoordinates = async () => {
 				const result = await axios.get(
-					`${API_GEOCODING_URL}/direct?q=${cityName},${code}&limit=1&appid=${API_KEY}`
+					`${API_GEOCODING_URL}/direct?q=${cityName},${code}&limit=1&appid=${apiKey}`
 				);
 				return result.data[0];
 			};
