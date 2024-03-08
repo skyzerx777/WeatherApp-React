@@ -13,7 +13,6 @@ function SearchBar({ setSelectedCity }) {
 			const response = await axios.get(
 				`${API_GEOCODING_URL}/direct?q=${inputValue}&limit=5&appid=${API_KEY}`
 			);
-			console.log(response);
 			return {
 				options: response.data.map(item => {
 					return {

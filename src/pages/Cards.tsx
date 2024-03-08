@@ -44,8 +44,11 @@ function Cards({ setSelectedCity }) {
 		},
 	];
 
-	const handleClick = async (event: MouseEvent) => {
-		const city = event.target.closest('.card').firstChild.innerText;
+	const handleClick = async event => {
+		let city;
+		if (event.target.closest('.card')) {
+			city = event.target.closest('.card').firstChild.innerText;
+		}
 		if (city) {
 			const [cityName, code] = city.split(', ');
 			const getCoordinates = async () => {
