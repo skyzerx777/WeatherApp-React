@@ -48,12 +48,17 @@ function CityWeather() {
 		<div className='flex flex-col mt-[5%] bg-white rounded-lg p-10 shadow-lg w-2/5'>
 			<div className='mb-4'>
 				{!fullCityWeather || (!selectedCity && 'Loading...')}
-				{selectedCity && (
-					<h1 className='font-bold text-3xl mb-2'>{selectedCity.label}</h1>
+				{selectedCity && fullCityWeather && (
+					<div className='flex justify-between'>
+						<h1 className='font-bold text-3xl mb-2'>{selectedCity.label}</h1>
+						<img
+							src={`http://openweathermap.org/img/w/${fullCityWeather.weather[0].icon}.png`}
+						/>
+					</div>
 				)}
 				{fullCityWeather && (
 					<>
-						<p className='mb-1'>Weather: {fullCityWeather.weather[0].main}</p>
+						<p className='mb-1'>Weather: {fullCityWeather.weather[0].main} </p>
 						<p className='mb-1'>
 							Temperature: {fullCityWeather.main.temp}&deg;C (Min:{' '}
 							{fullCityWeather.main.temp_min}&deg;C, Max:{' '}
