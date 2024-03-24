@@ -53,7 +53,7 @@ function CityWeather() {
 					<div className='flex justify-between items-center'>
 						<h1 className='font-bold text-3xl mb-2'>{selectedCity.label}</h1>
 						<img
-							src={`http://openweathermap.org/img/w/${fullCityWeather.weather[0].icon}.png`}
+							src={`https://openweathermap.org/img/w/${fullCityWeather.weather[0].icon}.png`}
 							width={60}
 						/>
 					</div>
